@@ -5,45 +5,124 @@ import pandas as pd
 
 
 
-st.set_page_config(
-    page_title="Career Recommendation System",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 st.markdown("""
 <style>
 
-.main{
-    background-color:#0E1117;
+/* Background */
+.stApp{
+    background: linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
 }
 
+/* Title */
 h1{
+    color:#38BDF8;
     text-align:center;
-    color:#4CAF50;
-}
-
-.block-container{
-    padding-top:2rem;
-}
-
-div.stButton > button{
-    width:100%;
-    height:60px;
-    border-radius:15px;
-    background:#4CAF50;
-    color:white;
-    font-size:22px;
+    font-size:52px;
     font-weight:bold;
 }
 
-div.stButton > button:hover{
-    background:#45a049;
+/* Subtitle */
+p{
+    font-size:18px;
 }
 
-[data-testid="stMetric"]{
-    border:2px solid #4CAF50;
+/* Main Container */
+.block-container{
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"]{
+    background:linear-gradient(180deg,#111827,#1E3A8A);
+}
+
+/* Dropdown Box */
+div[data-baseweb="select"] > div{
+    background:#1E293B !important;
+    border:2px solid #38BDF8 !important;
+    border-radius:12px !important;
+    color:white !important;
+}
+
+/* Dropdown Hover */
+div[data-baseweb="select"]:hover > div{
+    border:2px solid #22C55E !important;
+}
+
+/* Labels */
+label{
+    color:#E2E8F0 !important;
+    font-size:17px !important;
+    font-weight:600 !important;
+}
+
+/* Button */
+div.stButton > button{
+
+    width:100%;
+    height:60px;
+
+    background:linear-gradient(90deg,#2563EB,#06B6D4);
+
+    color:white;
+
+    border:none;
+
     border-radius:15px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+/* Button Hover */
+
+div.stButton > button:hover{
+
+    background:linear-gradient(90deg,#9333EA,#EC4899);
+
+    transform:scale(1.03);
+
+    box-shadow:0px 0px 15px #9333EA;
+
+}
+
+/* Success Box */
+
+div[data-testid="stAlert"]{
+
+    background:linear-gradient(90deg,#16A34A,#22C55E);
+
+    color:white;
+
+    border-radius:15px;
+
+    font-size:22px;
+
+}
+
+/* Metric Cards */
+
+[data-testid="stMetric"]{
+
+    background:#1E293B;
+
+    border-radius:15px;
+
     padding:20px;
+
+    border:2px solid #38BDF8;
+
+}
+
+hr{
+
+border:1px solid #334155;
+
 }
 
 </style>
@@ -162,4 +241,30 @@ if st.button("Predict Career"):
 
     role = role_encoder.inverse_transform(prediction)
 
-    st.success(f"Recommended Career Role: {role}")
+    st.balloons()
+
+    st.markdown(f"""
+    <div style="
+
+    background:linear-gradient(90deg,#2563EB,#06B6D4);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    ">
+
+    <h2 style="color:white;">
+    Recommended Career
+    </h2>
+
+    <h1 style="color:white;">
+    {role[0]}
+    </h1>
+
+    </div>
+    """, unsafe_allow_html=True)
