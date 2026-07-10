@@ -259,13 +259,4 @@ if st.button("Predict Career"):
     unsafe_allow_html=True
     )
 
-    <h2 style="color:white;">
-    Recommended Career
-    </h2>
-
-    <h1 style="color:white;">
-    {role[0]}
-    </h1>
-
-    </div>
-    """, unsafe_allow_html=True)
+   
