@@ -152,16 +152,7 @@ for i, skill in enumerate(skills):
 # ----------------------------
 
 
-completed = sum(
-    v != "Not Interested"
-    for v in user_inputs.values()
-)
 
-progress = completed/len(user_inputs)
-
-st.progress(progress)
-
-st.write(f"Assessment Completion : {int(progress*100)}%")
 
 if st.button("Predict Career"):
 
@@ -171,21 +162,4 @@ if st.button("Predict Career"):
 
     role = role_encoder.inverse_transform(prediction)
 
-    st.markdown(f"""
-<div style="
-background:linear-gradient(90deg,#11998e,#38ef7d);
-padding:30px;
-border-radius:20px;
-text-align:center;
-">
-
-<h2 style="color:white;">
-🎯 Recommended Career
-</h2>
-
-<h1 style="color:white;">
-{role}
-</h1>
-
-</div>
-""", unsafe_allow_html=True)
+    st.success(f"Recommended Career Role: {role}")
