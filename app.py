@@ -271,6 +271,17 @@ if st.button("Predict Career"):
         text-align: center;
         margin-top: 20px;
     ">
+    
+    st.markdown("<div id='result'></div>", unsafe_allow_html=True)
+    st.markdown("""
+<script>
+var element = window.parent.document.getElementById("result");
+if (element){
+    element.scrollIntoView({behavior: "smooth"});
+}
+</script>
+""", unsafe_allow_html=True)
+
         <h2 style="color:white;">Recommended Career</h2>
         <h1 style="color:white;">{role[0]}</h1>
     </div>
