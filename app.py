@@ -161,8 +161,10 @@ st.set_page_config(
 )
 
 st.title(" Career Recommendation System")
-st.write("Select your interest level for each skill and click **Predict Career**.")
+st.write("Select your interest level for each skill and click Predict Career.")
 
+# Create placeholder for result
+result_placeholder = st.empty()
 # ----------------------------
 # Interest Mapping
 # ----------------------------
@@ -271,7 +273,7 @@ if st.button("Predict Career"):
             text-align:center;
             margin-top:20px;
         ">
-            <h2 style="color:white;">🎯 Recommended Career</h2>
+            <h2 style="color:white;"> Recommended Career</h2>
             <h1 style="color:white;">{role[0]}</h1>
         </div>
         """,
