@@ -231,7 +231,7 @@ for i, skill in enumerate(skills):
 completed = sum(value > 0 for value in user_input)
 progress = completed / len(skills)
 
-st.markdown("### 📊 Assessment Progress")
+st.markdown("Assessment Progress")
 
 st.progress(progress)
 
