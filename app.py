@@ -4,7 +4,11 @@ import pandas as pd
 
 
 
-
+st.set_page_config(
+    page_title="Career Recommendation System",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 st.markdown("""
 <style>
@@ -155,10 +159,6 @@ skills = list(model.feature_names_in_)
 # ----------------------------
 # Streamlit Page Configuration
 # ----------------------------
-st.set_page_config(
-    page_title="Career Recommendation System",
-    layout="wide"
-)
 
 st.title(" Career Recommendation System")
 st.write("Select your interest level for each skill and click Predict Career.")
