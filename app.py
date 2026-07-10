@@ -246,15 +246,15 @@ if st.button("Predict Career"):
     st.markdown(f"""
     <div style="
 
-    background:linear-gradient(90deg,#2563EB,#06B6D4);
+      background:linear-gradient(90deg,#2563EB,#06B6D4);
 
-    padding:35px;
+      padding:35px;
 
-    border-radius:20px;
+      border-radius:20px;
 
-    text-align:center;
+      text-align:center;
 
-    margin-top:20px;
+      margin-top:20px;
 
     ">
 
