@@ -102,7 +102,7 @@ with left:
 
 with right:
 
-    st.subheader("📊 Continue")
+    st.subheader("Continue")
 
     for feature in feature_columns[len(feature_columns)//2:]:
         value = st.slider(feature,0,100,50)
