@@ -237,13 +237,13 @@ st.progress(progress)
 
 st.write(f"**{completed} of {len(skills)} skills selected**")
 if progress == 1:
-    st.success("✅ Assessment Completed! Click 'Predict My Career'.")
+    st.success(" Assessment Completed! Click 'Predict My Career'.")
 elif progress >= 0.75:
-    st.info("🟢 Almost done!")
+    st.info(" Almost done!")
 elif progress >= 0.50:
-    st.warning("🟡 Keep going...")
+    st.warning(" Keep going...")
 else:
-    st.error("🔴 Please select more skills.")
+    st.error(" Please select more skills.")
 
 # ----------------------------
 # Prediction
