@@ -7,8 +7,7 @@ import numpy as np
 # Page Config
 # -------------------------------
 st.set_page_config(
-    page_title="AI Career Predictor",
-    page_icon="🎯",
+    page_title="AI Career Predictor", 
     layout="wide"
 )
 
@@ -82,7 +81,7 @@ feature_columns = df.columns[:-1]
 # -------------------------------
 # Title
 # -------------------------------
-st.markdown("<div class='main-title'>🎯 AI Career Prediction System</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'> AI Career Prediction System</div>", unsafe_allow_html=True)
 
 st.markdown("<div class='sub-title'>Predict the best career based on your skills</div>", unsafe_allow_html=True)
 
@@ -95,7 +94,7 @@ inputs = []
 
 with left:
 
-    st.subheader("📝 Enter Your Skills")
+    st.subheader(" Enter Your Skills")
 
     for feature in feature_columns[:len(feature_columns)//2]:
         value = st.slider(feature,0,100,50)
@@ -112,7 +111,7 @@ with right:
 # -------------------------------
 # Prediction
 # -------------------------------
-if st.button("🚀 Predict Career"):
+if st.button(" Predict Career"):
 
     data = np.array(inputs).reshape(1,-1)
 
@@ -130,8 +129,8 @@ if st.button("🚀 Predict Career"):
     st.markdown(
         f"""
         <div class='prediction-box'>
-        🎉 Predicted Career <br><br>
-        💼 {career}
+        Predicted Career <br><br>
+         {career}
         </div>
         """,
         unsafe_allow_html=True
