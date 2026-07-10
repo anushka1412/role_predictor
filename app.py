@@ -224,7 +224,26 @@ for i, skill in enumerate(skills):
     user_input.append(interest_map[choice])
 
 
+# ----------------------------
+# Progress Bar
+# ----------------------------
 
+completed = sum(value > 0 for value in user_input)
+progress = completed / len(skills)
+
+st.markdown("### 📊 Assessment Progress")
+
+st.progress(progress)
+
+st.write(f"**{completed} of {len(skills)} skills selected**")
+if progress == 1:
+    st.success("✅ Assessment Completed! Click 'Predict My Career'.")
+elif progress >= 0.75:
+    st.info("🟢 Almost done!")
+elif progress >= 0.50:
+    st.warning("🟡 Keep going...")
+else:
+    st.error("🔴 Please select more skills.")
 
 # ----------------------------
 # Prediction
@@ -252,7 +271,7 @@ if st.button("Predict Career"):
         text-align: center;
         margin-top: 20px;
     ">
-        <h2 style="color:white;">🎯 Recommended Career</h2>
+        <h2 style="color:white;">Recommended Career</h2>
         <h1 style="color:white;">{role[0]}</h1>
     </div>
     """,
