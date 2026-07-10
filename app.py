@@ -129,6 +129,27 @@ border:1px solid #334155;
 
 }
 
+
+.result-card{
+    background:linear-gradient(90deg,#2563EB,#06B6D4);
+    padding:30px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0px 0px 20px rgba(37,99,235,0.5);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
 </style>
 """, unsafe_allow_html=True)
 with st.sidebar:
