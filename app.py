@@ -7,7 +7,7 @@ import pandas as pd
 # ----------------------------
 model = joblib.load("career_prediction_model.pkl")
 role_encoder = joblib.load("role_encoder.pkl")
-
+skills = list(model.feature_names_in_)
 # ----------------------------
 # Streamlit Page Configuration
 # ----------------------------
@@ -35,23 +35,23 @@ interest_map = {
 # --------------------------------------------------
 
 skills = [
-    "Python",
-    "Java",
-    "C++",
-    "SQL",
-    "Machine Learning",
-    "Deep Learning",
-    "Data Analysis",
-    "Statistics",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "Cloud Computing",
+    "Database Fundamentals",
+    "Computer Architecture",
+    "Distributed Computing Systems",
     "Cyber Security",
     "Networking",
-    "Linux",
-    "Communication Skills"
+    "Software Development",
+    "Programming Skills",
+    "Project Management",
+    "Computer Forensics Fundamentals",
+    "Technical Communication",
+    "AI ML",
+    "Software Engineering",
+    "Business Analysis",
+    "Communication skills",
+    "Data Science",
+    "Troubleshooting skills",
+    "Graphics Designing"
 ]
 
 # ----------------------------
