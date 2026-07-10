@@ -78,11 +78,10 @@ skills = list(model.feature_names_in_)
 # ----------------------------
 st.set_page_config(
     page_title="Career Recommendation System",
-    page_icon="💼",
     layout="wide"
 )
 
-st.title("💼 Career Recommendation System")
+st.title(" Career Recommendation System")
 st.write("Select your interest level for each skill and click **Predict Career**.")
 
 # ----------------------------
@@ -145,16 +144,8 @@ for i, skill in enumerate(skills):
 
     user_input.append(interest_map[choice])
 
-completed = sum(
-    value != "Not Interested"
-    for value in user_inputs.values()
-)
 
-progress = completed/len(user_inputs)
 
-st.progress(progress)
-
-st.write(f"Assessment Completed : {int(progress*100)}%")
 
 # ----------------------------
 # Prediction
