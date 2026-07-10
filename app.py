@@ -243,20 +243,21 @@ if st.button("Predict Career"):
 
     st.balloons()
 
-    st.markdown(f"""
+    st.markdown(
+    f"""
     <div style="
-
-      background:linear-gradient(90deg,#2563EB,#06B6D4);
-
-      padding:35px;
-
-      border-radius:20px;
-
-      text-align:center;
-
-      margin-top:20px;
-
+        background: linear-gradient(90deg, #2563EB, #06B6D4);
+        padding: 35px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 20px;
     ">
+        <h2 style="color:white;">🎯 Recommended Career</h2>
+        <h1 style="color:white;">{role[0]}</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
 
     <h2 style="color:white;">
     Recommended Career
