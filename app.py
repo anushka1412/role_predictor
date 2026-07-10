@@ -2,6 +2,71 @@ import streamlit as st
 import joblib
 import pandas as pd
 
+
+
+
+st.set_page_config(
+    page_title="Career Recommendation System",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+st.markdown("""
+<style>
+
+.main{
+    background-color:#0E1117;
+}
+
+h1{
+    text-align:center;
+    color:#4CAF50;
+}
+
+.block-container{
+    padding-top:2rem;
+}
+
+div.stButton > button{
+    width:100%;
+    height:60px;
+    border-radius:15px;
+    background:#4CAF50;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+div.stButton > button:hover{
+    background:#45a049;
+}
+
+[data-testid="stMetric"]{
+    border:2px solid #4CAF50;
+    border-radius:15px;
+    padding:20px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+with st.sidebar:
+
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+        width=120
+    )
+
+    st.title("Career Guide")
+
+    st.write("""
+Welcome!
+
+Select your interest level for each skill.
+
+The AI model will recommend the most suitable career.
+""")
+
+    st.info("Developed using Machine Learning")
+
 # ----------------------------
 # Load Model and Encoder
 # ----------------------------
@@ -29,6 +94,7 @@ interest_map = {
     "Intermediate": 2,
     "Professional": 3
 }
+
 
 # --------------------------------------------------
 # Replace these names with your dataset column names
@@ -78,6 +144,17 @@ for i, skill in enumerate(skills):
         )
 
     user_input.append(interest_map[choice])
+
+completed = sum(
+    value != "Not Interested"
+    for value in user_inputs.values()
+)
+
+progress = completed/len(user_inputs)
+
+st.progress(progress)
+
+st.write(f"Assessment Completed : {int(progress*100)}%")
 
 # ----------------------------
 # Prediction
