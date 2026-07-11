@@ -1,13 +1,13 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import numpy as np
+import traceback
 
 # -------------------------------
 # Page Config
 # -------------------------------
 st.set_page_config(
-    page_title="AI Career Predictor", 
+    page_title="AI Career Predictor",
     layout="wide"
 )
 
@@ -67,82 +67,91 @@ background:#ff5722;
 
 # -------------------------------
 # Load Model
-# -------------------------------import traceback
-
+# -------------------------------
 try:
     model = joblib.load("career_prediction_model.pkl")
     encoder = joblib.load("role_encoder.pkl")
-except Exception as e:
-    st.error("Model Loading Error")
+except Exception:
+    st.error("Error loading model")
     st.code(traceback.format_exc())
     st.stop()
 
 # -------------------------------
-# Load Dataset
+# Feature Names
 # -------------------------------
-df = pd.read_csv("dataset9000.csv")
-
-feature_columns = df.columns[:-1]
+try:
+    feature_columns = list(model.feature_names_in_)
+except AttributeError:
+    df = pd.read_csv("dataset9000.csv")
+    feature_columns = list(df.columns[:-1])
 
 # -------------------------------
 # Title
 # -------------------------------
-st.markdown("<div class='main-title'> AI Career Prediction System</div>", unsafe_allow_html=True)
+st.markdown(
+    "<div class='main-title'>AI Career Prediction System</div>",
+    unsafe_allow_html=True
+)
 
-st.markdown("<div class='sub-title'>Predict the best career based on your skills</div>", unsafe_allow_html=True)
+st.markdown(
+    "<div class='sub-title'>Predict the best career based on your skills</div>",
+    unsafe_allow_html=True
+)
 
 # -------------------------------
-# Layout
+# Input
 # -------------------------------
-left,right = st.columns(2)
+left, right = st.columns(2)
 
 inputs = []
 
+half = len(feature_columns) // 2
+
 with left:
-
-    st.subheader(" Enter Your Skills")
-
-    for feature in feature_columns[:len(feature_columns)//2]:
-        value = st.slider(feature,0,100,50)
+    st.subheader("Enter Your Skills")
+    for feature in feature_columns[:half]:
+        value = st.slider(feature, 0, 100, 50)
         inputs.append(value)
 
 with right:
-
     st.subheader("Continue")
-
-    for feature in feature_columns[len(feature_columns)//2:]:
-        value = st.slider(feature,0,100,50)
+    for feature in feature_columns[half:]:
+        value = st.slider(feature, 0, 100, 50)
         inputs.append(value)
 
 # -------------------------------
 # Prediction
 # -------------------------------
-if st.button(" Predict Career"):
+if st.button("Predict Career"):
 
-    data = np.array(inputs).reshape(1,-1)
+    input_df = pd.DataFrame([inputs], columns=feature_columns)
 
-    prediction = model.predict(data)[0]
+    try:
+        prediction = model.predict(input_df)[0]
+    except Exception:
+        st.error("Prediction Error")
+        st.code(traceback.format_exc())
+        st.stop()
 
     career = encoder.inverse_transform([prediction])[0]
 
-    try:
-        confidence = model.predict_proba(data).max()*100
-    except:
-        confidence = None
+    confidence = None
+    if hasattr(model, "predict_proba"):
+        confidence = model.predict_proba(input_df).max() * 100
 
     st.balloons()
 
     st.markdown(
         f"""
         <div class='prediction-box'>
-        Predicted Career <br><br>
-         {career}
+        Predicted Career<br><br>
+        {career}
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    if confidence:
+    if confidence is not None:
         st.progress(int(confidence))
         st.success(f"Confidence : {confidence:.2f}%")
 
