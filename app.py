@@ -67,9 +67,15 @@ background:#ff5722;
 
 # -------------------------------
 # Load Model
-# -------------------------------
-model = joblib.load("career_prediction_model.pkl")
-encoder = joblib.load("role_encoder.pkl")
+# -------------------------------import traceback
+
+try:
+    model = joblib.load("career_prediction_model.pkl")
+    encoder = joblib.load("role_encoder.pkl")
+except Exception as e:
+    st.error("Model Loading Error")
+    st.code(traceback.format_exc())
+    st.stop()
 
 # -------------------------------
 # Load Dataset
